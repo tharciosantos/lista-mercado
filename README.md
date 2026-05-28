@@ -70,7 +70,7 @@ src/
 ## Como Rodar Localmente
 
 ```bash
-git clone https://github.com/tharcio09/lista-mercado.git
+git clone https://github.com/tharciosantos/lista-mercado.git
 cd lista-mercado
 npm install
 npm run dev
