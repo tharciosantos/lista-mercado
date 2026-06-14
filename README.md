@@ -1,96 +1,181 @@
-# Lista de Mercado — PWA
+# Lista de Mercado
 
-![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
-![PWA](https://img.shields.io/badge/PWA-Ready-5C2D91?style=flat-square)
-![Deploy](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+Aplicação web progressiva para criação e organização de listas de compras. O projeto permite separar itens por categorias, controlar quantidades, acompanhar o que já foi colocado no carrinho e compartilhar a lista pendente pelo WhatsApp.
 
-**[Acessar demo online](https://lista-mercado-sage.vercel.app/)**
+## Status do projeto
 
-> Aplicativo de lista de compras com foco em UX mobile-first, categorização automática por corredor e suporte offline via PWA.
+**Concluído como projeto de estudo, com versão disponível em produção.**
 
----
+As funcionalidades principais de gerenciamento da lista e instalação como PWA estão implementadas. O projeto pode continuar evoluindo com testes, acessibilidade e opções adicionais de personalização.
 
-## Visão Geral
+## Objetivo do projeto
 
-<div align="center">
-  <img src="public/screenshot.PNG" alt="Visão geral da aplicação" width="100%">
-</div>
+O Lista de Mercado foi criado para facilitar a preparação e o acompanhamento de compras diretamente pelo navegador, com uma interface organizada por setores comuns de supermercado.
 
----
+O projeto também tem como objetivo praticar gerenciamento de estado com React, persistência local, filtros, componentes reutilizáveis, integração com recursos do navegador e configuração de uma Progressive Web App.
 
-## Sobre o Projeto
+## Demonstração
 
-O **Lista de Mercado** nasceu da necessidade prática de tornar a ida ao supermercado mais eficiente. Em vez do modelo tradicional de anotação manual, o app oferece uma **Lista Mestra com mais de 90 itens essenciais**, já organizados por categoria (corredor), com suporte a offline via PWA.
+- **Aplicação em produção:** [https://lista-mercado-sage.vercel.app/](https://lista-mercado-sage.vercel.app/)
+- **Repositório:** [https://github.com/tharciosantos/lista-mercado](https://github.com/tharciosantos/lista-mercado)
 
-O fluxo foi desenhado de forma invertida em relação ao padrão: o usuário carrega a lista completa e **remove apenas o que não precisa**, reduzindo o esforço de entrada de dados no dia a dia.
+![Tela principal do Lista de Mercado](public/screenshot.PNG)
 
----
+## Funcionalidades implementadas
 
-## Funcionalidades
+### Organização da lista
 
-- **Busca e adição de itens** — busca em tempo real com adição direta pelo campo de pesquisa
-- **Lista Mestra** — mais de 90 itens predefinidos, prontos para uso
-- **Categorização automática** — itens organizados por seção: Hortifruti, Açougue, Mercearia, Frios, Padaria, Higiene, Limpeza e Bebidas
-- **Controle de quantidade** — incremento e decremento por item
-- **Abas de status** — visualização separada entre itens pendentes e itens já no carrinho
-- **Compartilhamento via WhatsApp** — exporta a lista pendente via deep link com mensagem formatada
-- **PWA instalável** — funciona offline e pode ser instalado em Android e iOS
-- **Persistência local** — dados salvos no `localStorage` do dispositivo
+- Adição manual de itens com nome e quantidade.
+- Lista Mestra com 83 itens predefinidos.
+- Carregamento dos itens predefinidos na lista atual.
+- Organização por categorias: Hortifruti, Açougue, Mercearia, Frios, Padaria, Higiene, Limpeza e Bebidas.
+- Filtro de itens por categoria.
+- Busca em tempo real pelo nome do item.
+- Exclusão individual de itens pendentes.
+- Reinicialização completa da lista com confirmação.
 
----
+### Acompanhamento da compra
 
-## Stack
+- Controle de quantidade com incremento e decremento, respeitando o mínimo de uma unidade.
+- Marcação de itens como colocados no carrinho.
+- Separação entre as abas de itens pendentes e itens no carrinho.
+- Contadores de itens pendentes e concluídos.
+- Retorno de um item do carrinho para a lista de pendentes.
 
-| Tecnologia | Papel |
-|---|---|
-| React 19 | Biblioteca de UI e gerenciamento de estado |
-| Vite | Bundler e servidor de desenvolvimento |
-| Tailwind CSS | Estilização utilitária |
-| Lucide React | Ícones |
-| vite-plugin-pwa | Geração do Service Worker e manifest |
+### Persistência e compartilhamento
 
----
+- Persistência dos dados no `localStorage` do navegador.
+- Recuperação automática da lista salva ao abrir a aplicação.
+- Compartilhamento dos itens pendentes pelo WhatsApp por meio de um link com mensagem formatada.
 
-## Estrutura do Projeto
+### Progressive Web App
 
+- Manifest configurado com nome, cores, orientação e modo de exibição independente.
+- Ícones próprios nos tamanhos 192 por 192 e 512 por 512 pixels.
+- Service Worker gerado pelo `vite-plugin-pwa`.
+- Atualização automática do Service Worker.
+- Instalação pelo navegador em dispositivos compatíveis.
+- Acesso aos arquivos da aplicação armazenados pelo Service Worker quando estiverem disponíveis em cache.
+
+## Tecnologias utilizadas
+
+### Front-end
+
+- React 19
+- Vite 7
+- Tailwind CSS 3
+- Lucide React
+
+### PWA e persistência
+
+- vite-plugin-pwa
+- Web App Manifest
+- Service Worker
+- localStorage
+
+### Qualidade e deploy
+
+- ESLint
+- Vercel
+
+> O projeto não possui back-end próprio, banco de dados remoto ou autenticação. Todos os itens são armazenados localmente no navegador em uso.
+
+## Estrutura geral do projeto
+
+```text
+lista-mercado/
+├── public/
+│   ├── pwa-192x192.png         # Ícone da PWA
+│   ├── pwa-512x512.png         # Ícone da PWA
+│   └── screenshot.PNG          # Imagem utilizada no README
+├── src/
+│   ├── components/
+│   │   ├── Controls.jsx        # Categorias, busca, quantidade e adição
+│   │   ├── Header.jsx          # Abas, contadores e ações globais
+│   │   └── ItemRow.jsx         # Item, quantidade, status e exclusão
+│   ├── App.jsx                 # Estado, regras da lista e composição da interface
+│   ├── index.css               # Estilos globais
+│   └── main.jsx                # Ponto de entrada da aplicação
+├── package.json                # Dependências e scripts
+├── tailwind.config.js          # Configuração do Tailwind CSS
+└── vite.config.js              # Configuração do Vite e da PWA
 ```
-src/
-├── components/
-│   ├── Header.jsx      # Abas de navegação e ações globais
-│   ├── Controls.jsx    # Filtro por categoria, campo de busca e adição
-│   └── ItemRow.jsx     # Linha de item com controles de quantidade e status
-├── App.jsx             # Estado global, lógica de negócio e composição do layout
-└── main.jsx            # Ponto de entrada da aplicação
-```
 
----
+## Como executar localmente
 
-## Como Rodar Localmente
+### Pré-requisitos
+
+- Node.js compatível com o Vite 7
+- npm
+
+### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/tharciosantos/lista-mercado.git
 cd lista-mercado
+```
+
+### 2. Instale as dependências
+
+```bash
 npm install
+```
+
+### 3. Inicie a aplicação
+
+```bash
 npm run dev
 ```
 
-O app estará disponível em `http://localhost:5173`.
+O Vite informará a URL local no terminal, normalmente [http://localhost:5173](http://localhost:5173).
 
----
+### Scripts disponíveis
 
-## Decisões Técnicas
+| Comando | Descrição |
+| --- | --- |
+| `npm run dev` | Inicia o servidor de desenvolvimento. |
+| `npm run build` | Gera o build de produção e os arquivos da PWA. |
+| `npm run lint` | Executa o ESLint. |
+| `npm run preview` | Executa localmente o build gerado. |
 
-- **`h-[100dvh]`** — garante que o layout ocupe apenas a área visível real em mobile, evitando o overflow causado pela barra de endereço do navegador.
-- **Fluxo de remoção (não adição)** — a UX foi invertida propositalmente: o padrão de uso real começa pela Lista Mestra e o usuário filtra o que não precisa, reduzindo atrito.
-- **Estado derivado** — as listas de pendentes, carrinho e itens visíveis são calculadas a partir de um único array de estado, sem duplicidade de dados.
+## Variáveis de ambiente
 
----
+O projeto não utiliza variáveis de ambiente atualmente e não possui arquivos `.env`.
+
+Não é necessário configurar serviços externos para executar a aplicação. O compartilhamento utiliza o endereço público do WhatsApp e os dados da lista permanecem no `localStorage`.
+
+## Testes
+
+O projeto ainda não possui testes automatizados nem scripts de teste configurados no `package.json`.
+
+A validação disponível atualmente é feita pelo ESLint e pelo processo de build do Vite.
+
+## Aprendizados
+
+- Gerenciamento de estado e efeitos com React.
+- Organização da interface em componentes reutilizáveis.
+- Criação de filtros e busca em tempo real.
+- Uso de estado derivado para separar itens pendentes e concluídos.
+- Persistência de dados com localStorage.
+- Integração com o compartilhamento do WhatsApp por URL.
+- Configuração de manifest e Service Worker para PWA.
+- Construção de uma interface adaptada a telas menores.
+- Estilização com Tailwind CSS.
+- Deploy de uma aplicação Vite na Vercel.
+
+## Próximos passos
+
+- **Planejado:** implementar testes automatizados para os fluxos da lista.
+- **Planejado:** melhorar a acessibilidade dos controles e mensagens da interface.
+- **Planejado:** permitir edição do nome ou da categoria de um item existente.
+- **Planejado:** permitir personalização da Lista Mestra e das categorias.
+- **Planejado:** adicionar uma opção de exportação da lista em outros formatos.
+- **Planejado:** melhorar o tratamento de dados inválidos armazenados no `localStorage`.
+- **Planejado:** validar o comportamento offline e de instalação da PWA em diferentes navegadores e dispositivos.
 
 ## Autor
 
-Desenvolvido por **Tharcio Augusto Santos**
-
-- [LinkedIn](https://www.linkedin.com/in/tharcio-santos-dev/)
-- [Portfólio](https://tharcio-portfolio.vercel.app/)
+**Nome:** Tharcio Santos  
+**GitHub:** [https://github.com/tharciosantos](https://github.com/tharciosantos)  
+**LinkedIn:** [https://www.linkedin.com/in/tharcio-santos-dev/](https://www.linkedin.com/in/tharcio-santos-dev/)  
+**Portfólio:** [https://tharcio-portfolio.vercel.app/](https://tharcio-portfolio.vercel.app/)
