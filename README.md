@@ -1,18 +1,18 @@
 # Lista de Mercado
 
-Aplicação web progressiva para criação e organização de listas de compras. O projeto permite separar itens por categorias, controlar quantidades, acompanhar o que já foi colocado no carrinho e compartilhar a lista pendente pelo WhatsApp.
+Aplicação web progressiva (PWA) para criação, organização e acompanhamento de compras no supermercado. O projeto organiza os itens pelos corredores e setores da loja, calcula o progresso em tempo real, auto-categoriza produtos ao digitar, permite compras 100% offline e exporta a lista agrupada por setor diretamente para o WhatsApp.
 
 ## Status do projeto
 
-**Concluído como projeto de estudo, com versão disponível em produção.**
+**Concluído com versão em produção e PWA instalável.**
 
-As funcionalidades principais de gerenciamento da lista e instalação como PWA estão implementadas. O projeto pode continuar evoluindo com testes, acessibilidade e opções adicionais de personalização.
+As funcionalidades de gestão da lista, auto-categorização inteligente, cálculo de progresso e instalação como Progressive Web App estão 100% implementadas e disponíveis.
 
 ## Objetivo do projeto
 
-O Lista de Mercado foi criado para facilitar a preparação e o acompanhamento de compras diretamente pelo navegador, com uma interface organizada por setores comuns de supermercado.
+O Lista de Mercado foi desenvolvido para solucionar a dor real de quem faz compras físicas: itens desorganizados na tela, idas e vindas desnecessárias nos corredores do supermercado e falta de clareza sobre o que já foi colocado no carrinho.
 
-O projeto também tem como objetivo praticar gerenciamento de estado com React, persistência local, filtros, componentes reutilizáveis, integração com recursos do navegador e configuração de uma Progressive Web App.
+Com uma interface mobile-first e lógica focada no dia a dia, a aplicação ordena automaticamente os produtos na sequência natural dos corredores e permite instalação nativa no celular.
 
 ## Demonstração
 
@@ -23,39 +23,44 @@ O projeto também tem como objetivo praticar gerenciamento de estado com React, 
 
 ## Funcionalidades implementadas
 
-### Organização da lista
+### Organização da lista e auto-categorização
 
-- Adição manual de itens com nome e quantidade.
-- Lista Mestra com 83 itens predefinidos.
-- Carregamento dos itens predefinidos na lista atual.
-- Organização por categorias: Hortifruti, Açougue, Mercearia, Frios, Padaria, Higiene, Limpeza e Bebidas.
-- Filtro de itens por categoria.
-- Busca em tempo real pelo nome do item.
-- Exclusão individual de itens pendentes.
-- Reinicialização completa da lista com confirmação.
+- **Lista Mestra com 220 itens pré-cadastrados** cobrindo todas as necessidades essenciais de supermercado.
+- **Auto-categorização inteligente:** ao digitar qualquer produto (ex: *"maçã"*, *"frango"*, *"amaciante"*, *"ração"*), o sistema identifica e atribui o setor correto automaticamente.
+- **11 Setores de Supermercado com identificação visual:**
+  - 🥬 Hortifruti (35 itens)
+  - 🥩 Açougue & Peixes (24 itens)
+  - 🍚 Mercearia & Despensa (44 itens)
+  - 🧀 Frios & Laticínios (18 itens)
+  - 🍞 Padaria & Matinais (16 itens)
+  - ❄️ Congelados (14 itens)
+  - 🧴 Higiene Pessoal (24 itens)
+  - 🧹 Limpeza & Casa (22 itens)
+  - 🥤 Bebidas (14 itens)
+  - 🐾 Pet Shop (8 itens)
+  - 💡 Bazar & Utilidades (9 itens)
+- **Ordenação lógica por corredores:** na visão geral, os itens são apresentados na sequência física dos corredores de mercado.
+- **Busca em tempo real** nos itens pendentes ou no carrinho.
 
-### Acompanhamento da compra
+### Acompanhamento e controle de compras
 
-- Controle de quantidade com incremento e decremento, respeitando o mínimo de uma unidade.
-- Marcação de itens como colocados no carrinho.
-- Separação entre as abas de itens pendentes e itens no carrinho.
-- Contadores de itens pendentes e concluídos.
-- Retorno de um item do carrinho para a lista de pendentes.
+- **Barra de progresso visual no topo:** exibe a porcentagem e a proporção de itens colocados no carrinho (ex: *14 de 20 itens · 70%*).
+- **Contador de produtos e volumes totais** em tempo real.
+- **Controle de quantidade** com botões de incremento e decremento inline.
+- **Separação em abas:** *Pendentes* e *No Carrinho*.
+- **Ação "Limpar Carrinho":** remove apenas os itens já coletados ao finalizar uma etapa, preservando os pendentes.
+- **Ação "Nova Compra":** reinicialização da lista com confirmação.
 
-### Persistência e compartilhamento
+### Persistência e integração WhatsApp
 
-- Persistência dos dados no `localStorage` do navegador.
-- Recuperação automática da lista salva ao abrir a aplicação.
-- Compartilhamento dos itens pendentes pelo WhatsApp por meio de um link com mensagem formatada.
+- **Persistência segura no `localStorage`** com sanitização e tratamento de exceções.
+- **Compartilhamento estruturado para WhatsApp:** gera mensagem formatada em Markdown com cabeçalhos por setor e caixas de seleção (`◻️ 2x Arroz`).
 
-### Progressive Web App
+### Progressive Web App (PWA Offline-First)
 
-- Manifest configurado com nome, cores, orientação e modo de exibição independente.
-- Ícones próprios nos tamanhos 192 por 192 e 512 por 512 pixels.
-- Service Worker gerado pelo `vite-plugin-pwa`.
-- Atualização automática do Service Worker.
-- Instalação pelo navegador em dispositivos compatíveis.
-- Acesso aos arquivos da aplicação armazenados pelo Service Worker quando estiverem disponíveis em cache.
+- Manifest configurado com tema esmeralda (`#059669`), modo standalone e suporte a tela cheia.
+- Service Worker gerado com precaching de assets para uso 100% offline.
+- Ícones em alta resolução para instalação nativa no Android, iOS e desktop.
 
 ## Tecnologias utilizadas
 
@@ -68,32 +73,28 @@ O projeto também tem como objetivo praticar gerenciamento de estado com React, 
 
 ### PWA e persistência
 
-- vite-plugin-pwa
-- Web App Manifest
-- Service Worker
-- localStorage
+- vite-plugin-pwa (Service Worker & Manifest)
+- Web Storage API (`localStorage`)
 
 ### Qualidade e deploy
 
 - ESLint
 - Vercel
 
-> O projeto não possui back-end próprio, banco de dados remoto ou autenticação. Todos os itens são armazenados localmente no navegador em uso.
-
 ## Estrutura geral do projeto
 
 ```text
 lista-mercado/
 ├── public/
-│   ├── pwa-192x192.png         # Ícone da PWA
-│   ├── pwa-512x512.png         # Ícone da PWA
-│   └── screenshot.PNG          # Imagem utilizada no README
+│   ├── pwa-192x192.png         # Ícone da PWA (192px)
+│   ├── pwa-512x512.png         # Ícone da PWA (512px)
+│   └── screenshot.PNG          # Imagem de demonstração
 ├── src/
 │   ├── components/
-│   │   ├── Controls.jsx        # Categorias, busca, quantidade e adição
-│   │   ├── Header.jsx          # Abas, contadores e ações globais
-│   │   └── ItemRow.jsx         # Item, quantidade, status e exclusão
-│   ├── App.jsx                 # Estado, regras da lista e composição da interface
+│   │   ├── Controls.jsx        # Pílulas de categorias, busca e quantidade
+│   │   ├── Header.jsx          # Progresso da compra, contadores e abas
+│   │   └── ItemRow.jsx         # Card do item, checkbox, quantidade e exclusão
+│   ├── App.jsx                 # Estado global, lista de 220 itens, auto-categorização e WhatsApp
 │   ├── index.css               # Estilos globais
 │   └── main.jsx                # Ponto de entrada da aplicação
 ├── package.json                # Dependências e scripts
@@ -102,11 +103,6 @@ lista-mercado/
 ```
 
 ## Como executar localmente
-
-### Pré-requisitos
-
-- Node.js compatível com o Vite 7
-- npm
 
 ### 1. Clone o repositório
 
@@ -127,51 +123,16 @@ npm install
 npm run dev
 ```
 
-O Vite informará a URL local no terminal, normalmente [http://localhost:5173](http://localhost:5173).
+Acesse [http://localhost:5173](http://localhost:5173) no navegador.
 
 ### Scripts disponíveis
 
 | Comando | Descrição |
 | --- | --- |
-| `npm run dev` | Inicia o servidor de desenvolvimento. |
-| `npm run build` | Gera o build de produção e os arquivos da PWA. |
-| `npm run lint` | Executa o ESLint. |
-| `npm run preview` | Executa localmente o build gerado. |
-
-## Variáveis de ambiente
-
-O projeto não utiliza variáveis de ambiente atualmente e não possui arquivos `.env`.
-
-Não é necessário configurar serviços externos para executar a aplicação. O compartilhamento utiliza o endereço público do WhatsApp e os dados da lista permanecem no `localStorage`.
-
-## Testes
-
-O projeto ainda não possui testes automatizados nem scripts de teste configurados no `package.json`.
-
-A validação disponível atualmente é feita pelo ESLint e pelo processo de build do Vite.
-
-## Aprendizados
-
-- Gerenciamento de estado e efeitos com React.
-- Organização da interface em componentes reutilizáveis.
-- Criação de filtros e busca em tempo real.
-- Uso de estado derivado para separar itens pendentes e concluídos.
-- Persistência de dados com localStorage.
-- Integração com o compartilhamento do WhatsApp por URL.
-- Configuração de manifest e Service Worker para PWA.
-- Construção de uma interface adaptada a telas menores.
-- Estilização com Tailwind CSS.
-- Deploy de uma aplicação Vite na Vercel.
-
-## Próximos passos
-
-- **Planejado:** implementar testes automatizados para os fluxos da lista.
-- **Planejado:** melhorar a acessibilidade dos controles e mensagens da interface.
-- **Planejado:** permitir edição do nome ou da categoria de um item existente.
-- **Planejado:** permitir personalização da Lista Mestra e das categorias.
-- **Planejado:** adicionar uma opção de exportação da lista em outros formatos.
-- **Planejado:** melhorar o tratamento de dados inválidos armazenados no `localStorage`.
-- **Planejado:** validar o comportamento offline e de instalação da PWA em diferentes navegadores e dispositivos.
+| `npm run dev` | Inicia o servidor de desenvolvimento Vite. |
+| `npm run build` | Gera o build de produção e o Service Worker da PWA. |
+| `npm run lint` | Executa a verificação com ESLint. |
+| `npm run preview` | Executa localmente o build de produção gerado. |
 
 ## Autor
 

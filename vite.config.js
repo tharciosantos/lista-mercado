@@ -12,7 +12,7 @@ export default defineConfig({
         name: 'Minha Lista de Mercado',
         short_name: 'Mercado',
         description: 'Lista de compras inteligente e rápida',
-        theme_color: '#2563eb',
+        theme_color: '#059669',
         background_color: '#ffffff',
         display: 'standalone', // Isso faz abrir sem barra de navegador!
         scope: '/',
